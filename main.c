@@ -6,9 +6,11 @@
 #include "Headers/global.h"
 #include "Headers/functions.h"
 
+char Name[20];
 
 int main()
 {
+    int total;
     system("cls");
     printf("  ||||||||||||    ||     ||  || ||          ||   ||       ||       ||||||||||  |||        |||       |||        ||||||||||   ||||||||||||\n");
     printf("       ||         ||     ||  || || ||       ||   ||    |||          ||     |   ||||     |||||     ||   ||      ||      ||        ||\n");
@@ -29,7 +31,6 @@ int main()
     getchar();
     system("cls");
     // Input Personal Details
-    char Name[20];
     printf("ENTER YOUR DETAILS: \n");
     printf("Name : ");
     scanf("%[^\n]s", Name);
@@ -72,47 +73,43 @@ int main()
     switch (quiz_choice)
     {
     case 1:
-        p1.Total_Score = 0;
-
-        setQuestions(1);
-
-                
-        FILE *file = fopen("Scores\\scores_P.txt", "a");
-        setScore(file, p1.Total_Score, Name);
+       setQuestions(1);  
 
         break;
     case 2:
-        e1.Total_Score = 0;
 
         setQuestions(2);
 
-        FILE *file = fopen("Scores\\scores_E.txt", "a");
-        setScore(file, e1.Total_Score, Name);
+        FILE *file_2 = fopen("Scores\\scores_E.txt", "a");
+        setScore(file_2, Total, Name);
+        fclose(file_2);
         break;
     case 3:
-        c1.Total_Score = 0;
+        setQuestions(3);
+
+        FILE *file_3 = fopen("Scores\\scores_C.txt", "a");
+        setScore(file_3, Total, Name);
+        fclose(file_3);
         break;
     case 4:
+        setQuestions(4);
+
         break;
     case 5:
+        setQuestions(5);
+
         break;
     case 6:
+        setQuestions(6);
+
+        FILE *file_6 = fopen("Scores\\scores_G.txt", "a");
+        setScore(file_6, Total, Name);
+        fclose(file_6);
         break;
     default:
         break;
     }
 
-    printf("The Total Score is %d out of 100.\n", Total);
-    if (Total >= 70)
-    {
-        printf("YOU PASSED THE QUIZ GAME! CONGRATULATIONS %s:)\n", Name);
-    }
-    else
-    {
-        printf("YOU FAILED THE QUIZ! SORRY %s :(\n", Name);
-    }
-
     return 0;
 
-    return 0;
 }

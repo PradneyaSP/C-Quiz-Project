@@ -6,6 +6,9 @@ extern int Total;
 extern int Life1;
 extern int Life2;
 extern int questions[10];
+extern double elapsed;
+extern double time_taken;
+extern char Name[20];
 
 typedef struct
 {
@@ -24,46 +27,40 @@ typedef struct
 typedef struct 
 {
     Question p_q[100];
-    int Total_Score;
 } C_Programming;
 
 typedef struct 
 {
     Question e_q[100];
-    int Total_Score;
 } Engineering_Visualisation;
 
 typedef struct 
 {
     Question d_q[100];
-    int Total_Score;
 } Data_Structure;
 
 typedef struct 
 {
     Question c_q[100];
-    int Total_Score;
 } Computer_Systems;
 
 typedef struct 
 {
-    Question a_q[100];
-    int Total_Score;
-} Advanced_Calculus;
+    Question s_q[100];
+} System_Programming;
 
 typedef struct 
 {
     Question g_q[100];
-    int Total_Score;
 } General;
 
 extern Question q;
-extern C_Programming p1;
-extern Engineering_Visualisation e1;
-extern Data_Structure d1;
+extern System_Programming s1;
 extern Computer_Systems c1;
-extern Advanced_Calculus a1;
+extern Data_Structure d1;
+extern Engineering_Visualisation e1;
 extern General g1;
+extern C_Programming p1;
 
 
 #endif
