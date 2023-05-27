@@ -75,6 +75,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
+            printf("%d. ",i+1);
             askQuestion(&p1.p_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -90,13 +91,117 @@ void setQuestions(int n)
         printf("The Total Score is %d out of 100.\n", Total);
 
         FILE *file_1 = fopen("Scores\\scores_P.txt", "a");
-        setScore(file_1, Total, Name);
+        setScore(file_1, Total, Name, time_taken);
+        topScore(file_1);
         fclose(file_1);
 
         break;
     case 2:
+        setValues(&e1.e_q[0], "Which type of line is used to represent hidden or invisible edges in an orthographic projection?", "1) Dashed line", "2) Solid line", "3) Dot-dashed line", "4) Dotted line", 1, 10, 1, 3, "Hidden lines are typically represented by dashed lines to differentiate them from visible lines.");
+        setValues(&e1.e_q[1], "In an isometric projection, angles between axes are:", "1) 90 degrees", "2) 120 degrees", "3) 30 degrees", "4) 45 degrees", 3, 10, 2, 3, "In an isometric projection, the angles between each pair of axes are 120 degrees.");
+        setValues(&e1.e_q[2], "What is the purpose of a centerline in an engineering drawing?", "1) To indicate symmetry", "2) To indicate dimensions", "3) To indicate hidden lines", "4) To indicate material specifications", 1, 10, 1, 3, "Centerlines are used to indicate the symmetry of an object or feature.");
+        setValues(&e1.e_q[3], "Which type of projection is commonly used in engineering drawings?", "1) Perspective projection", "2) Isometric projection", "3) Oblique projection", "3) Oblique projection", 4, 10, 1, 4, "Orthographic projection is the standard method used to represent objects in engineering drawings.");
+        setValues(&e1.e_q[4], "Which of the following is NOT a basic dimensioning element in engineering drawings?", "1) Diameter", "2) Radius", "3) Thickness", "4) Volume", 4, 10, 2, 4, "Basic dimensioning elements include diameter, radius, and thickness, which define the size and shape of objects.");
+        setValues(&e1.e_q[5], "What does the term \"tolerance\" refer to in engineering drawings?", "1) The level of accuracy required for a dimension", "2) The distance between two parallel lines", "3) The thickness of a line", "4) The size of a drawing sheet", 1, 10, 1, 3, "Tolerance defines the allowable variation from a specified dimension.");
+        setValues(&e1.e_q[6], "Which type of line is used to represent the outline of an object in an orthographic projection?", "1) Phantom line", "2) Hidden line", "3) Object line", "4) Centerline", 3, 10, 3, 4, "Object lines are solid lines used to represent the visible edges of an object in an orthographic projection.");
+        setValues(&e1.e_q[7], "What is the purpose of section views in engineering drawings?", "1) To show the interior details of an object", "2) To indicate symmetry", "3) To show the isometric view of an object", "4) To indicate surface finishes", 1, 10, 1, 3, "Section views are used to reveal the internal features of an object that are not visible in the standard views.");
+        setValues(&e1.e_q[8], "Which type of projection is commonly used to represent curved surfaces in engineering drawings?", "1) Isometric projection", "2) Oblique projection", "3) Orthographic projection", "4) Perspective projection", 2, 10, 2, 4, "Oblique projection is often used to represent curved surfaces by showing them at an angle.");
+        setValues(&e1.e_q[9], "What does the abbreviation \"R\" typically represent in engineering drawings?", "1) Radius", "2) Right angle", "3) Rectangular dimension", "4) Roughness", 1, 10, 1, 2, "The abbreviation \"R\" is commonly used to represent the radius of a curved feature in engineering drawings.");
+        setValues(&e1.e_q[10], "Which type of line is used to represent alternate positions or movement in engineering drawings?", "1) Hidden line", "2) Phantom line", "3) Construction line", "4) Centerline", 2, 10, 2, 4, "Phantom lines are used to represent alternate positions or movement of an object.");
+        setValues(&e1.e_q[11], "What does the abbreviation \"C\" typically represent in engineering drawings?", "1) Centerline", "2) Circumference", "3) Chord", "4) Counterbore", 1, 10, 1, 4, "The abbreviation \" C \" is commonly used to represent a centerline in engineering drawings.");
+        setValues(&e1.e_q[12], "Which type of line is used to indicate a cutting plane in a section view?", "1) Phantom line", "2) Hidden line", "3) Cutting plane line", "4) Break line", 3, 10, 2, 3, "Cutting plane lines are used to indicate the plane along which a section view is taken.");
+        setValues(&e1.e_q[13], "Which type of line is used to represent an alternate position or a repeated detail in a drawing?", "1) Hidden line", "2) Phantom line", "3) Construction line", "4) Break line", 4, 10, 2, 4, "Break lines are used to show an alternate position or a repeated detail in a drawing.");
+        setValues(&e1.e_q[14], "Which type of line is used to represent a cylindrical surface in a sectional view?", "1) Hidden line", "2) Phantom line", "3) Section line", "4) Cutting plane line", 3, 10, 1, 3, "Section lines are used to represent the cut surface of a material in a sectional view.");
+        setValues(&e1.e_q[15], "Which type of line is used to represent the edge of a surface or an outline of a part in an engineering drawing?", "1) Phantom line", "2) Centerline", "3) Object line", "4) Construction line", 3, 10, 3, 4, "Object lines are solid lines used to represent the visible edges or outline of a part.");
+        setValues(&e1.e_q[16], "What does the abbreviation \"DIA\" typically represent in engineering drawings?", "1) Dimension", "2) Diameter", "3) Drawing", "4) Distance", 2, 10, 2, 3, "The abbreviation \" DIA \" is commonly used to represent the diameter of a circular feature in engineering drawings.");
+        setValues(&e1.e_q[17], "Which type of line is used to represent the outline of an object that extends beyond the boundaries of the drawing sheet?", "1) Extension line", "2) Hidden line", "3) Phantom line", "4) Break line", 3, 10, 1, 3, "Phantom lines are used to represent the outline of an object that extends beyond the boundaries of the drawing sheet.");
+        setValues(&e1.e_q[18], "What does the abbreviation \"H\" typically represent in engineering drawings?", "1) Height", "2) Hypotenuse", "3) Horizontal", "4) Hole", 1, 10, 1, 3, "The abbreviation \" H \" is commonly used to represent the height of a feature or an object in engineering drawings.");
+        setValues(&e1.e_q[19], "Which type of line is used to represent the outline of an object when it is partially obscured by another object?", "1) Hidden line", "2) Phantom line", "3) Extension line", "4) Section line", 1, 10, 1, 2, "Hidden lines are used to represent the outline of an object when it is obscured by another object in an orthographic projection.");
+        setValues(&e1.e_q[20], "Which type of line is used to indicate the cutting plane in a sectional view?", "1) Break line", "2) Hidden line", "3) Phantom line", "4) Section line", 4, 10, 2, 4, "Section lines are used to indicate the cutting plane in a sectional view.");
+        setValues(&e1.e_q[21], "What does the abbreviation \"THK\" typically represent in engineering drawings?", "1) Thickness", "2) Think", "3) Throttle", "4) Thread", 1, 10, 1, 3, "The abbreviation \"THK\" is commonly used to represent the thickness of a material or a feature in engineering drawings.");
+        setValues(&e1.e_q[22], "Which type of line is used to represent the edges of a hole or a cylindrical feature in a sectional view?", "1) Hidden line", "2) Phantom line", "3) Section line", "4) Cutting plane line", 3, 10, 3, 4, "Section lines are used to represent the edges of a hole or a cylindrical feature in a sectional view.");
+        setValues(&e1.e_q[23], "What does the abbreviation \"TYP\" typically represent in engineering drawings?", "1) Typical", "2) Thickness", "3) Taper", "4) Tolerance", 1, 10, 1, 2, "The abbreviation \"TYP\" is commonly used to represent a typical dimension or feature in engineering drawings.");
+        setValues(&e1.e_q[24], "Which type of line is used to represent a long, narrow slot in an engineering drawing?", "1) Hidden line", "2) Phantom line", "3) Break line", "4) Centerline", 1, 10, 1, 4, "Hidden lines are used to represent the edges of a long, narrow slot in an engineering drawing.");
+        setValues(&e1.e_q[25], "What does the abbreviation \"CONC\" typically represent in engineering drawings?", "1) Concentric", "2) Concrete", "3) Concentration", "3) Concentration", 2, 10, 1, 2, "The abbreviation \"CONC\" is commonly used to represent a concrete material or construction in engineering drawings.");
+
+        random_Qnumber();
+
+        for (int i = 0; i < 10; i++)
+        {
+            start_time = time(NULL);
+            printf("%d. ",i+1);
+            askQuestion(&e1.e_q[questions[i]]);
+            end_time = time(NULL);
+            elapsed = difftime(end_time, start_time);
+            printf("Time taken: %.2f seconds\n", elapsed);
+
+            printf("\bPress Enter to Continue.");
+            getchar();
+            getchar();
+            time_taken += elapsed;
+            system("cls");
+        }
+
+        printf("The Total Score is %d out of 100.\n", Total);
+
+        FILE *file_2 = fopen("Scores\\scores_E.txt", "a");
+        setScore(file_2, Total, Name, time_taken);
+        topScore(file_2);
+        fclose(file_2);
+
         break;
     case 3:
+        setValues(&c1.c_q[0], "Which component of a computer is responsible for executing instructions?", "1) Central Processing Unit (CPU)", "2) Random Access Memory (RAM)", "3) Hard Disk Drive (HD4)", "4) Graphics Processing Unit (GPU)", 1, 10, 1, 3, "It is often referred to as the \"brain\" of the computer.");
+        setValues(&c1.c_q[1], "Which type of memory is volatile and loses its data when the power is turned off?", "1) Read-Only Memory (ROM)", "2) Cache Memory", "3) Secondary Memory", "4) Random Access Memory (RAM)", 4, 10, 4, 2, "It provides temporary storage for data and instructions that are actively being used by the CPU.");
+        setValues(&c1.c_q[2], "What is the purpose of an operating system?", "1)manage hardware resources", "2) Store data permanently", "3) Run application software", "4) All of the above", 4, 10, 4, 3, "An operating system is responsible for managing various aspects of computer hardware, providing an interface for user interaction, and enabling software execution.");
+        setValues(&c1.c_q[3], "Which of the following is an example of an input device?", "1) Monitor", "2) Printer", "3) Keyboard", "4) Speakers", 3, 10, 3, 1, "Input devices are used to enter data or commands into the computer system.");
+        setValues(&c1.c_q[4], "What is the function of a motherboard in a computer system?", "1) Store data permanently", "2) Provide power to the system", "3) Connect all the hardware components", "4) Execute program instructions", 3, 10, 3, 2, "The motherboard is the main circuit board that connects the CPU, RAM, storage devices, and other peripherals.");
+        setValues(&c1.c_q[5], "Which programming language is often used for web development?", "1) Java", "2) C++", "3) Python", "4) HTML", 4, 10, 4, 2, "HTML (Hypertext Markup Language) is the standard language for creating web pages.");
+        setValues(&c1.c_q[6], "What is the primary function of a compiler?", "1) Execute program instructions", "2) Convert source code into machine code", "3) Provide an interface for user interaction", "4) Manage computer hardware resources", 2, 10, 2, 3, "A compiler translates high-level programming languages into low-level machine code that can be executed by the computer.");
+        setValues(&c1.c_q[7], "Which of the following is a secondary storage device?", "1) USB flash drive", "2) CPU cache", "3) RAM", "4) Optical disc drive", 1, 10, 1, 4, "Secondary storage devices are used for long-term storage of data and programs.");
+        setValues(&c1.c_q[8], "What is the purpose of an IP address?", "1) Identify a specific website", "2) Store files and folders", "3) Identify a device on a network", "4) Execute program instructions", 3, 10, 2, 3, "An IP address is a unique numerical identifier assigned to each device connected to a network.");
+        setValues(&c1.c_q[9], "Which of the following is an example of an output device?", "1) Mouse", "2) Hard disk drive", "3) Printer", "4) Network interface card (NI3)", 3, 10, 3, 4, "Output devices are used to display or produce information from the computer system.");
+        setValues(&c1.c_q[10], "What does the acronym \"URL\" stand for?", "1) Universal Resource Locator", "2) Unified Resource Locator", "3) Uniform Resource Language", "4) Universal Routing Language", 1, 10, 1, 3, "A URL is the address used to locate a resource on the internet.");
+        setValues(&c1.c_q[11], "Which of the following is an example of a high-level programming language?", "1) Assembly language", "2) Machine language", "3) C++", "4) Binary code", 3, 10, 3, 2, "High-level programming languages are easier for humans to read and write compared to low-level languages like assembly or machine language.");
+        setValues(&c1.c_q[12], "What is the purpose of a firewall in a computer system?", "1) Protect against unauthorized access", "2) Store data permanently", "3) Execute program instructions", "4) Provide power to the system", 1, 10, 1, 4, "A firewall is a security measure that monitors and filters incoming and outgoing network traffic to protect against unauthorized access or malicious activities.");
+        setValues(&c1.c_q[13], "What is the function of an input/output (I/O) device?", "1) Execute program instructions", "2) Connect all the hardware components", "3) Store data permanently", "4) Enable communication between the computer and the user or other devices", 4, 10, 2, 4, "I/O devices facilitate the exchange of data between the computer and external devices, such as keyboards, mice, monitors, and printers.");
+        setValues(&c1.c_q[14], "Which of the following is an example of system software?", "1) Web browser", "2) Word processor", "3) Operating system", "4) Spreadsheet program", 3, 10, 3, 1, "System software provides the fundamental functions and services required to operate and manage a computer system.");
+        setValues(&c1.c_q[15], "What is the purpose of a cache memory in a computer system?", "1) Store frequently used data and instructions for quick access", "2) Execute program instructions", "3) Connect all the hardware components", "4) Store data permanently", 1, 10, 1, 2, "Cache memory is a high-speed storage unit that holds frequently accessed data and instructions to reduce the time it takes for the CPU to access them.");
+        setValues(&c1.c_q[16], "Which of the following is an example of a network topology?", "1) HTML", "2) Ethernet", "3) Ring", "4) Java", 3, 10, 2, 3, "Network topology refers to the physical or logical layout of devices and connections in a network, such as bus, star, ring, or mesh.");
+        setValues(&c1.c_q[17], "What is the purpose of a compiler in the software development process?", "1) Detect and fix software bugs", "2) Convert source code into machine code", "3) Provide an interface for user interaction", "4) Manage computer hardware resources", 2, 10, 2, 4, "A compiler is used to translate human-readable source code into machine code that can be executed by the computer.");
+        setValues(&c1.c_q[19], "Which of the following is an example of an application software?", "1) Operating system", "2) Compiler", "3) Spreadsheet program", "4) BIOS", 3, 10, 4, 3, "Application software is designed to perform specific tasks or applications, such as word processing, spreadsheet calculations, or graphic design.");
+        setValues(&c1.c_q[20], "What is the purpose of a graphical user interface (GUI)?", "1) Manage computer hardware resources", "2) Provide an interface for user interaction", "3) Convert source code into machine code", "4) Store data permanently", 2, 10, 2, 1, "A GUI allows users to interact with the computer system using graphical elements, such as windows, icons, and menus.");
+        setValues(&c1.c_q[21], "Which type of computer memory is non-volatile and retains its data even when the power is turned off?", "1) Cache memory", "2) Random Access Memory (RAM)", "3) Read-Only Memory (ROM)", "4) Hard Disk Drive (HDD)", 3, 10, 3, 4, "ROM is a type of memory that stores permanent instructions or data that are not intended to be modified.");
+        setValues(&c1.c_q[22], "What is the purpose of an antivirus software?", "1) Convert source code into machine code", "2) Provide an interface for user interaction", "3) Detect and remove computer viruses", "4) Store data permanently", 3, 10, 1, 3, "Antivirus software is designed to identify, prevent, and remove malicious software, including computer viruses, from a computer system.");
+        setValues(&c1.c_q[23], "Which of the following is an example of a cloud storage service?", "1) USB flash drive", "2) DVD-ROM", "3) Google Drive", "4) Solid State Drive (SSD)", 3, 10, 3, 2, "Cloud storage services allow users to store and access their files and data remotely over the internet.");
+        setValues(&c1.c_q[24], "What is the purpose of an interrupt in a computer system?", "1) Execute program instructions", "2) Connect all the hardware components", "3) Provide power to the system", "4) Signal the CPU to pause its current activities and handle a specific event or condition", 4, 10, 4, 1, "Interrupts are used to handle time-critical events or tasks that require immediate attention from the CPU.");
+        setValues(&c1.c_q[25], "Which of the following is an example of a firmware?", "1) Web browser", "2) Operating system", "3) Printer driver", "4) BIOS", 4, 10, 4, 3, "Firmware is a type of software that is permanently stored in hardware devices, such as the Basic Input/Output System (BIOS) of a computer.");
+
+        random_Qnumber();
+
+        for (int i = 0; i < 10; i++)
+        {
+            start_time = time(NULL);
+            printf("%d. ",i+1);
+            askQuestion(&c1.c_q[questions[i]]);
+            end_time = time(NULL);
+            elapsed = difftime(end_time, start_time);
+            printf("Time taken: %.2f seconds\n", elapsed);
+
+            printf("\bPress Enter to Continue.");
+            getchar();
+            getchar();
+            time_taken += elapsed;
+            system("cls");
+        }
+
+        printf("The Total Score is %d out of 100.\n", Total);
+
+        FILE *file_3 = fopen("Scores\\scores_C.txt", "a");
+        setScore(file_3, Total, Name, time_taken);
+        topScore(file_3);
+        fclose(file_3);
+
         break;
     case 4:
         setValues(&d1.d_q[0], "Which data structure is based on the \"First-In-First-Out\" (FIFO) principle?", "1) Stack", "2) Queue", "3) Heap", "4) Linked List", 2, 10, 2, 4, "Think about the order in which elements are accessed or removed from the structure.");
@@ -131,6 +236,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
+            printf("%d. ",i+1);
             askQuestion(&d1.d_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -146,9 +252,10 @@ void setQuestions(int n)
         printf("The Total Score is %d out of 100.\n", Total);
 
         FILE *file_4 = fopen("Scores\\scores_D.txt", "a");
-        setScore(file_4, Total, Name);
+        setScore(file_4, Total, Name, time_taken);
+        topScore(file_4);
         fclose(file_4);
-        
+
         break;
     case 5:
         setValues(&s1.s_q[0], "What is the primary purpose of a compiler?", "1) Execute programs", "2) Interpret source code", "3) Translate source code to machine code", "4) Debug programs", 3, 10, 3, 4, "A compiler converts high-level programming languages into low-level machine code.");
@@ -171,11 +278,11 @@ void setQuestions(int n)
         setValues(&s1.s_q[17], "What is the purpose of an assembler?", "1) To execute assembly language programs", "2) To translate assembly language to machine code", "3) To provide an interactive programming environment", "4) To debug assembly language programs", 2, 10, 2, 1, "An assembler converts assembly language instructions into machine code that can be directly executed by the processor.");
         setValues(&s1.s_q[18], "Which of the following is a valid assembly language instruction?", "1) ADD R1, R2", "2) PRINT \"Hello, World!\"", "3) IF-ELSE", "4) FOR Loop", 1, 10, 1, 4, "Assembly language instructions typically consist of an operation mnemonic followed by operands, such as registers or memory addresses.");
         setValues(&s1.s_q[19], "Which component of the computer is responsible for executing assembly language instructions?", "1) Central Processing Unit (CPU)", "2) Random Access Memory (RAM)", "3) Hard Disk Drive (HD4)", "4) Graphics Processing Unit (GPU)", 1, 10, 1, 3, "The CPU is the component of the computer that executes instructions, including assembly language instructions.");
-        setValues(&s1.s_q[20], "Which of the following is NOT a typical register found in a processor?", "1) Accumulator","2) Instruction Register", "3) Memory Address Register", "4) Control Register", 2, 10, 2, 4, "The instruction register holds the current instruction being executed, but it is not a general-purpose register.");
+        setValues(&s1.s_q[20], "Which of the following is NOT a typical register found in a processor?", "1) Accumulator", "2) Instruction Register", "3) Memory Address Register", "4) Control Register", 2, 10, 2, 4, "The instruction register holds the current instruction being executed, but it is not a general-purpose register.");
         setValues(&s1.s_q[21], "What is the purpose of the MOV instruction in assembly language?", "1) Move data between registers or memory locations", "2) Add two values", "3) Compare two values", "4) Jump to a different instruction", 1, 10, 1, 4, "The MOV instruction is used to transfer (move) data between registers or memory locations.");
         setValues(&s1.s_q[22], "Which of the following is a conditional jump instruction in assembly language?", "1) MOV", "2) ADD", "3) JMP", "4) CALL", 3, 10, 3, 4, "The JMP instruction is used for an unconditional jump, while conditional jumps depend on certain conditions.");
         setValues(&s1.s_q[23], "What is a macro in programming?", "1) A type of data structure", "2) A high-level programming language", "3) A reusable piece of code", "4) A database management system", 3, 10, 3, 2, "Macros are reusable code snippets that can be expanded inline in a program.");
-        setValues(&s1.s_q[24], "What is the primary purpose of using macros?","1) To improve code readability","2) To reduce code duplication","3) To increase code portability","4) To optimize program execution", 2, 10, 2, 3, "Macros help in reducing code duplication by allowing you to define reusable code segments.");
+        setValues(&s1.s_q[24], "What is the primary purpose of using macros?", "1) To improve code readability", "2) To reduce code duplication", "3) To increase code portability", "4) To optimize program execution", 2, 10, 2, 3, "Macros help in reducing code duplication by allowing you to define reusable code segments.");
         setValues(&s1.s_q[25], "Which programming languages support macros?", "1) Only high-level languages like Python and Java", "2) Only low-level languages like Assembly", "3) Both high-level and low-level languages", "4) None of the above", 3, 10, 3, 1, "Macros are supported in both high-level and low-level languages, although the syntax and usage may vary.");
 
         random_Qnumber();
@@ -183,6 +290,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
+            printf("%d. ",i+1);
             askQuestion(&s1.s_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -198,11 +306,63 @@ void setQuestions(int n)
         printf("The Total Score is %d out of 100.\n", Total);
 
         FILE *file_5 = fopen("Scores\\scores_S.txt", "a");
-        setScore(file_5, Total, Name);
+        setScore(file_5, Total, Name, time_taken);
+        topScore(file_5);
         fclose(file_5);
-        
+
         break;
     case 6:
+        setValues(&g1.g_q[0], " What is always in front of you but can't be seen?", "1) Future", "2) Mirror", "3) Air", "4) Memory", 1, 10, 1, 3, "It refers to the concept of time.");
+        setValues(&g1.g_q[1], " What has keys but can't open locks?", "1) Piano", "2) Keyboard", "3) Map", "4) Tree", 1, 10, 1, 4, "It produces sounds when you press its keys.");
+        setValues(&g1.g_q[2], "The more you take, the more you leave behind. What am I?", "1) Footsteps", "2) Breath", "3) Time", "4) Knowledge", 3, 10, 3, 1, " It refers to a non-physical concept.");
+        setValues(&g1.g_q[3], "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?", "1) Whisper", "2) Echo", "3) Dream", "4) Thought", 2, 10, 2, 1, "You often hear it in nature.");
+        setValues(&g1.g_q[4], "What has a heart that doesn't beat?", "1) Clock", "2) Human", "3) Computer", "4) Tomato", 1, 10, 1, 2, "It is a common household item.");
+        setValues(&g1.g_q[5], "I can be cracked, made, told, and played. What am I?", "1) Joke", "2) Egg", "3) Music", "4) Riddle", 4, 10, 4, 3, " It involves creativity.");
+        setValues(&g1.g_q[6], "What gets wetter the more it dries?", "1) Towel", "2) Soap", "3) Hair", "4) Sponge", 1, 10, 1, 3, "It is used for drying.");
+        setValues(&g1.g_q[7], "I am always hungry, I must always be fed. The finger I touch will soon turn red. What am I?", "1) Fire", "2) Baby", "3) Shark", "4) Spider", 1, 10, 1, 3, "It requires fuel to continue.");
+        setValues(&g1.g_q[8], "The more you have of it, the less you see. What is it?", "1) Darkness", "2) Wisdom", "3) Sleep", "4) Mist", 1, 10, 1, 4, "It refers to a lack of something.");
+        setValues(&g1.g_q[9], "I can fly without wings. I can cry without eyes. Wherever I go, darkness follows me. What am I?", "1) Wind", "2) Ghost", "3) Cloud", "4) Moon", 3, 10, 3, 4, " It is related to weather.");
+        setValues(&g1.g_q[10], "I have cities but no houses, forests but no trees, and rivers but no water. What am I?", "1) Map", "2) Globe", "3) Book", "4) Dream", 1, 10, 1, 2, "It provides information.");
+        setValues(&g1.g_q[11], " What goes up but never comes down?", "1) Age", "2) Happiness", "3) Energy", "4) Balloon", 1, 10, 1, 3, "It refers to a natural process.");
+        setValues(&g1.g_q[12], " I am an odd number. Take away one letter and I become even. What number am I?", "1) One", "2) Three", "3) Five", "4) Seven", 2, 10, 2, 3, "Pay attention to the wording.");
+        setValues(&g1.g_q[13], "The more you take, the more you leave behind. What am I", "1) Steps", "2) Footprints", "3) Time", "4) Money", 3, 10, 3, 2, "It refers to a non-physical concept.");
+        setValues(&g1.g_q[14], "What can you catch but not throw?", "1) Cold", "2) Ball", "3) Fish", "4) Air", 1, 10, 1, 4, "It is an illness.");
+        setValues(&g1.g_q[15], "The person who makes it, sells it. The person who buys it, never uses it. The person who uses it, never knows they're using it. What is it?", "1) Coffin", "2) Pen", "3) Bed", "4) Car", 1, 10, 1, 3, "It is related to a somber event.");
+        setValues(&g1.g_q[16], "I am not alive, but I can grow; I don't have lungs, but I need air; I don't have a mouth, but water kills me. What am I?", "1) Fire", "2) Tree", "3) Cloud", "4) Candle", 1, 10, 1, 4, "It is a common household item.");
+        setValues(&g1.g_q[17], "What has keys that open no locks, space but no room, and you can enter but not go in?", "1) Keyboard", "2) Piano", "3) Map", "4) Website", 4, 10, 4, 3, "It is a virtual space.");
+        setValues(&g1.g_q[18], " What has a neck but no head?", "1) Bottle", "2) Giraffe", "3) Shirt", "4) Pen", 1, 10, 1, 2, "It is a common object.");
+        setValues(&g1.g_q[19], " What can be seen once in a minute, twice in a moment, and never in a thousand years?", "1) Opportunity", "2) Reflection", "3) Lightning", "4) Star", 3, 10, 3, 2, "It is a natural phenomenon.");
+        setValues(&g1.g_q[20], " I am taken from a mine and shut in a wooden case, from which I am never released, and yet I am used by almost every person. What am I?", "1) Coal", "2) Oxygen", "3) Gold", "4) Pencil Lead", 4, 10, 4, 1, "You use it to write or draw.");
+        setValues(&g1.g_q[21], "What has a thumb and four fingers, but is not alive?", "1) Glove", "2) Statue", "3) Handprint", "4) Puppet", 1, 10, 1, 3, "It is often worn.");
+        setValues(&g1.g_q[22], "The more you work, the more I'll eat. You keep me full, I'll keep you neat. What am I?", "1) Time", "2) Money", "3) Vacuum cleaner", "4) Hunger", 3, 10, 3, 4, "It involves cleanliness");
+        setValues(&g1.g_q[23], " What has a face and two hands but no arms or legs?", "1) Clock", "2) Mirror", "3) Sun", "4) Ball", 1, 10, 1, 3, "It helps you keep track of time.");
+        setValues(&g1.g_q[24], " What has keys but can't open locks?", "1) Piano", "2) Keyboard", "3) Map", "4) Tree", 1, 10, 1, 2, "It produces sounds when you press its keys.");
+        setValues(&g1.g_q[25], "I can be cracked, made, told, and played. What am I?", "1) Joke", "2) Egg", "3) Music", "4) Riddle", 4, 10, 4, 3, "It involves creativity.");
+        random_Qnumber();
+
+        for (int i = 0; i < 10; i++)
+        {
+            start_time = time(NULL);
+            printf("%d. ",i+1);
+            askQuestion(&g1.g_q[questions[i]]);
+            end_time = time(NULL);
+            elapsed = difftime(end_time, start_time);
+            printf("Time taken: %.2f seconds\n", elapsed);
+            time_taken += elapsed;
+            printf("\bPress Enter to Continue.");
+            getchar();
+            getchar();
+
+            system("cls");
+        }
+
+        printf("The Total Score is %d out of 100.\n", Total);
+
+        FILE *file_6 = fopen("Scores\\scores_G.txt", "a");
+        setScore(file_6, Total, Name, time_taken);
+        topScore(file_6);
+        fclose(file_6);
+
     default:
         break;
     }
@@ -338,13 +498,13 @@ void random_Qnumber()
     }
 }
 
-void setScore(FILE *file, int score, char *name)
+void setScore(FILE *file, int score, char *name, float time)
 {
     if (file == NULL)
         printf("Error opening the file.");
     else
     {
-        fprintf(file,"%s %d\n",name,score);
+        fprintf(file, "%s\t%d\t%f\n", name, score, time);
         printf("Score saved successfully!\n");
     }
 }
@@ -355,4 +515,48 @@ void Time()
     clock_t end = clock();
     elapsed = (double)(end - start) / CLOCKS_PER_SEC;
     printf("Time taken: %.6f seconds\n", elapsed);
+}
+
+void topScore(FILE *file)
+{
+    if (file == NULL)
+    {
+        printf("Error opening the file.\n");
+        return;
+    }
+
+    Player topPlayer;
+    topPlayer.score = -1;
+    topPlayer.time = 0;
+
+    Player currentPlayer;
+
+    while (fscanf(file, "%s\t%d\t%f", currentPlayer.name, &currentPlayer.score, &currentPlayer.time) != EOF)
+    {
+        if (currentPlayer.score > topPlayer.score && currentPlayer.time < topPlayer.time) 
+        {
+            topPlayer = currentPlayer;
+        }
+    }
+
+    fclose(file);
+
+    printf("Top Score: %d\nTime Taken : %f\n", topPlayer.score,topPlayer.time);
+    printf("Top Player(s):\n");
+
+    file = fopen("scores.txt", "r");
+    if (file == NULL)
+    {
+        printf("Error opening the file.\n");
+        return;
+    }
+
+    while (fscanf(file, "%s\t%d\t%f", currentPlayer.name, &currentPlayer.score, &currentPlayer.time) != EOF)
+    {
+        if (currentPlayer.score == topPlayer.score && currentPlayer.time == topPlayer.time)
+        {
+            printf("%s\n", currentPlayer.name);
+        }
+    }
+
 }

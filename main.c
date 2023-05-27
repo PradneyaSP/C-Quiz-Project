@@ -52,7 +52,7 @@ int main()
         printf("What is your CHOICE?(in number)\n : ");
         while (1)
         {
-            if (scanf("%d", &quiz_choice) != 1 || quiz_choice > 5 || quiz_choice < 1)
+            if (scanf("%d", &quiz_choice) != 1 || quiz_choice > 6 || quiz_choice < 1)
             {
                 printf("Error: Invalid input. Please enter your answer.\n");
                 while (getchar() != '\n')
@@ -74,37 +74,22 @@ int main()
     {
     case 1:
        setQuestions(1);  
-
         break;
     case 2:
 
         setQuestions(2);
-
-        FILE *file_2 = fopen("Scores\\scores_E.txt", "a");
-        setScore(file_2, Total, Name);
-        fclose(file_2);
         break;
     case 3:
         setQuestions(3);
-
-        FILE *file_3 = fopen("Scores\\scores_C.txt", "a");
-        setScore(file_3, Total, Name);
-        fclose(file_3);
         break;
     case 4:
         setQuestions(4);
-
         break;
     case 5:
         setQuestions(5);
-
         break;
     case 6:
         setQuestions(6);
-
-        FILE *file_6 = fopen("Scores\\scores_G.txt", "a");
-        setScore(file_6, Total, Name);
-        fclose(file_6);
         break;
     default:
         break;

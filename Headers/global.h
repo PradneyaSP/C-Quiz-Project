@@ -24,35 +24,42 @@ typedef struct
     char Hint[200];
 } Question;
 
-typedef struct 
+typedef struct
 {
     Question p_q[100];
 } C_Programming;
 
-typedef struct 
+typedef struct
 {
     Question e_q[100];
 } Engineering_Visualisation;
 
-typedef struct 
+typedef struct
 {
     Question d_q[100];
 } Data_Structure;
 
-typedef struct 
+typedef struct
 {
     Question c_q[100];
 } Computer_Systems;
 
-typedef struct 
+typedef struct
 {
     Question s_q[100];
 } System_Programming;
 
-typedef struct 
+typedef struct
 {
     Question g_q[100];
 } General;
+
+typedef struct
+{
+    char name[20];
+    int score;
+    float time;
+} Player;
 
 extern Question q;
 extern System_Programming s1;
@@ -61,6 +68,7 @@ extern Data_Structure d1;
 extern Engineering_Visualisation e1;
 extern General g1;
 extern C_Programming p1;
-
+extern Player currentPlayer;
+extern Player topPlayer;
 
 #endif

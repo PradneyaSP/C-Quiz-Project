@@ -1,1 +1,4 @@
-Pradneya 40
+Pradneya    50  6.000
+Piyush  50  8.00
+Pratyush    50  6.000
+Ritik   40  1.000
