@@ -9,5 +9,7 @@ void askQuestion(Question *q);
 void setScore(FILE *file, int score, char *name , float time);
 void topScore(FILE *file);
 void random_Qnumber();
+void topPlayers(FILE *file);
+int start();
 
 #endif

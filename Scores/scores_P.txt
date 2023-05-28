@@ -2,3 +2,11 @@ Pradneya    50  6.000
 Piyush  50  8.00
 Pratyush    50  6.000
 Ritik   40  1.000
+Pradneya	30	5.000000
+Pradneya	50	5.000000
+PPPPPP	20	9.000000
+Prad	50	2.000000
+Pradd	30	3.000000
+Pradneya	30	2.000000
+Pradnn	50	6.000000
+Praaaa	50	4.000000

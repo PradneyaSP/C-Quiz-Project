@@ -54,13 +54,6 @@ typedef struct
     Question g_q[100];
 } General;
 
-typedef struct
-{
-    char name[20];
-    int score;
-    float time;
-} Player;
-
 extern Question q;
 extern System_Programming s1;
 extern Computer_Systems c1;
@@ -68,7 +61,5 @@ extern Data_Structure d1;
 extern Engineering_Visualisation e1;
 extern General g1;
 extern C_Programming p1;
-extern Player currentPlayer;
-extern Player topPlayer;
 
 #endif

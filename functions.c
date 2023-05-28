@@ -14,6 +14,16 @@ System_Programming s1;
 General g1;
 Question q;
 
+typedef struct
+{
+    char name[20];
+    int score;
+    float time;
+} Player;
+
+Player currentPlayer;
+Player topPlayer;
+
 int Guess;
 int Total;
 int Life1;
@@ -75,7 +85,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&p1.p_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -92,8 +102,13 @@ void setQuestions(int n)
 
         FILE *file_1 = fopen("Scores\\scores_P.txt", "a");
         setScore(file_1, Total, Name, time_taken);
-        topScore(file_1);
         fclose(file_1);
+        FILE *file_1_a = fopen("Scores\\scores_P.txt", "a");
+        topScore(file_1_a);
+        fclose(file_1_a);
+        FILE *file_1_b = fopen("Scores\\scores_P.txt", "a");
+        topPlayers(file_1_b);
+        fclose(file_1_b);
 
         break;
     case 2:
@@ -129,7 +144,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&e1.e_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -147,7 +162,7 @@ void setQuestions(int n)
         FILE *file_2 = fopen("Scores\\scores_E.txt", "a");
         setScore(file_2, Total, Name, time_taken);
         topScore(file_2);
-        fclose(file_2);
+        topPlayers(file_2);
 
         break;
     case 3:
@@ -182,7 +197,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&c1.c_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -200,7 +215,7 @@ void setQuestions(int n)
         FILE *file_3 = fopen("Scores\\scores_C.txt", "a");
         setScore(file_3, Total, Name, time_taken);
         topScore(file_3);
-        fclose(file_3);
+        topPlayers(file_3);
 
         break;
     case 4:
@@ -236,7 +251,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&d1.d_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -254,7 +269,7 @@ void setQuestions(int n)
         FILE *file_4 = fopen("Scores\\scores_D.txt", "a");
         setScore(file_4, Total, Name, time_taken);
         topScore(file_4);
-        fclose(file_4);
+        topPlayers(file_4);
 
         break;
     case 5:
@@ -290,7 +305,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&s1.s_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -308,7 +323,7 @@ void setQuestions(int n)
         FILE *file_5 = fopen("Scores\\scores_S.txt", "a");
         setScore(file_5, Total, Name, time_taken);
         topScore(file_5);
-        fclose(file_5);
+        topPlayers(file_5);
 
         break;
     case 6:
@@ -343,7 +358,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&g1.g_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -361,7 +376,7 @@ void setQuestions(int n)
         FILE *file_6 = fopen("Scores\\scores_G.txt", "a");
         setScore(file_6, Total, Name, time_taken);
         topScore(file_6);
-        fclose(file_6);
+        topPlayers(file_6);
 
     default:
         break;
@@ -506,6 +521,7 @@ void setScore(FILE *file, int score, char *name, float time)
     {
         fprintf(file, "%s\t%d\t%f\n", name, score, time);
         printf("Score saved successfully!\n");
+        fclose(file);
     }
 }
 
@@ -524,33 +540,33 @@ void topScore(FILE *file)
         printf("Error opening the file.\n");
         return;
     }
-
-    Player topPlayer;
+    fseek(file, 0, SEEK_SET);
     topPlayer.score = -1;
-    topPlayer.time = 0;
-
-    Player currentPlayer;
-
+    topPlayer.time = 10000.00;
     while (fscanf(file, "%s\t%d\t%f", currentPlayer.name, &currentPlayer.score, &currentPlayer.time) != EOF)
     {
-        if (currentPlayer.score > topPlayer.score && currentPlayer.time < topPlayer.time) 
+        printf("%d\n",currentPlayer.score);
+        if (currentPlayer.score > topPlayer.score && currentPlayer.time < topPlayer.time)
         {
+            printf("1\n");
             topPlayer = currentPlayer;
         }
     }
 
     fclose(file);
+}
 
-    printf("Top Score: %d\nTime Taken : %f\n", topPlayer.score,topPlayer.time);
+void topPlayers(FILE *file)
+{
+    printf("Top Score: %d\nTime Taken : %f\n", topPlayer.score, topPlayer.time);
     printf("Top Player(s):\n");
 
-    file = fopen("scores.txt", "r");
     if (file == NULL)
     {
         printf("Error opening the file.\n");
         return;
     }
-
+    fseek(file, 0, SEEK_SET);
     while (fscanf(file, "%s\t%d\t%f", currentPlayer.name, &currentPlayer.score, &currentPlayer.time) != EOF)
     {
         if (currentPlayer.score == topPlayer.score && currentPlayer.time == topPlayer.time)
@@ -558,5 +574,229 @@ void topScore(FILE *file)
             printf("%s\n", currentPlayer.name);
         }
     }
+}
 
+struct Node
+{
+    char user_id[100];
+    char password[100];
+    struct Node *left;
+    struct Node *right;
+};
+
+struct Node *createNode(const char *password, const char *user_id)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    strcpy(newNode->password, password);
+    strcpy(newNode->user_id, user_id);
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct Node *Insert(struct Node *root, const char *password, const char *user_id)
+{
+    if (root == NULL)
+    {
+        root = createNode(password, user_id);
+        return root;
+    }
+
+    if (strcmp(root->user_id, user_id) > 0)
+    {
+        root->left = Insert(root->left, password, user_id);
+    }
+    else
+    {
+        root->right = Insert(root->right, password, user_id);
+    }
+
+    return root;
+}
+
+void TakeInput(struct Node **root)
+{
+    int i = 0;
+    char user_id[100];
+    char password[100];
+    // printf("Enter -1 to exit\n");
+    while (i < 1)
+    {
+        printf("user_id: ");
+        scanf("%s", user_id);
+        printf("password: ");
+        scanf("%s", password);
+        *root = Insert(*root, password, user_id);
+        i++;
+    }
+}
+
+struct Node *minVal(struct Node *root)
+{
+    struct Node *temp = root;
+    while (temp->left != NULL)
+    {
+        temp = temp->left;
+    }
+    return temp;
+}
+
+struct Node *maxVal(struct Node *root)
+{
+    struct Node *temp = root;
+    while (temp->right != NULL)
+    {
+        temp = temp->right;
+    }
+    return temp;
+}
+
+void levelOrderTraversal(struct Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    struct Node *queue[1000];
+    int front = 0;
+    int rear = 0;
+    queue[rear++] = root;
+
+    while (front != rear)
+    {
+        struct Node *temp = queue[front++];
+
+        printf("USER ID: %s\n", temp->user_id);
+        printf("PASSWORD: %s\n", temp->password);
+
+        if (temp->left)
+        {
+            queue[rear++] = temp->left;
+        }
+
+        if (temp->right)
+        {
+            queue[rear++] = temp->right;
+        }
+    }
+}
+int search(struct Node *root, const char *user_id)
+{
+    struct Node *newroot = root;
+    while (newroot != NULL && strcmp(newroot->user_id, user_id) != 0)
+    {
+        if (strcmp(newroot->user_id, user_id) < 0)
+        {
+            newroot = newroot->right;
+        }
+        else
+        {
+            newroot = newroot->left;
+        }
+    }
+    if (!newroot)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int searchPass(struct Node *root, const char *password)
+{
+    struct Node *newroot = root;
+    while (newroot != NULL && strcmp(newroot->password, password) != 0)
+    {
+        if (strcmp(newroot->password, password) < 0)
+        {
+            newroot = newroot->right;
+        }
+        else
+        {
+            newroot = newroot->left;
+        }
+    }
+    if (!newroot)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+void saveToFile(struct Node *root)
+{
+    FILE *file = fopen("user_info.txt", "w");
+    if (file != NULL)
+    {
+        struct Node *queue[1000];
+        int front = 0;
+        int rear = 0;
+        queue[rear++] = root;
+
+        while (front != rear)
+        {
+            struct Node *temp = queue[front++];
+
+            fprintf(file, "USER ID: %s\n", temp->user_id);
+            fprintf(file, "PASSWORD: %s\n", temp->password);
+
+            if (temp->left)
+            {
+                queue[rear++] = temp->left;
+            }
+
+            if (temp->right)
+            {
+                queue[rear++] = temp->right;
+            }
+        }
+
+        fclose(file);
+        printf("User information saved to file.\n");
+    }
+    else
+    {
+        printf("Unable to open the file.\n");
+    }
+}
+
+int start()
+{
+    struct Node *root = NULL;
+    int n;
+    printf("Are you a new user?(enter 1 if yes else 0\n");
+    scanf("%d", &n);
+    if (n == 1)
+    {
+        TakeInput(&root);
+        saveToFile(root);
+        return 1;
+    }
+    else
+    {
+        char userid[100];
+        char password[100];
+        printf("Enter user_id to verify: ");
+        scanf("%s", userid);
+        if (search(root, userid))
+        {
+            printf("USER ID: %s verified. Now enter the password: ", userid);
+            scanf("%s", password);
+            if (searchPass(root, password))
+            {
+                printf("Congratulations! ID and password successfully verified.\n");
+                return 1;
+            }
+            else
+            {
+                printf("Wrong password.\n");
+                return 0;
+            }
+        }
+        else
+        {
+            printf("Wrong user_id.\n");
+            return 0;
+        }
+    }
 }
