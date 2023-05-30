@@ -545,10 +545,8 @@ void topScore(FILE *file)
     topPlayer.time = 10000.00;
     while (fscanf(file, "%s\t%d\t%f", currentPlayer.name, &currentPlayer.score, &currentPlayer.time) != EOF)
     {
-        printf("%d\n",currentPlayer.score);
         if (currentPlayer.score > topPlayer.score && currentPlayer.time < topPlayer.time)
         {
-            printf("1\n");
             topPlayer = currentPlayer;
         }
     }
