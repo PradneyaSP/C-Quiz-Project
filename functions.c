@@ -14,8 +14,8 @@ System_Programming s1;
 General g1;
 Question q;
 
-int Guess;
-int Total;
+int Answer;
+int Total_Score;
 int Life1;
 int Life2;
 double elapsed;
@@ -75,7 +75,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&p1.p_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -88,11 +88,10 @@ void setQuestions(int n)
             system("cls");
         }
 
-        printf("The Total Score is %d out of 100.\n", Total);
+        printf("The Total Score is %d out of 100.\n", Total_Score);
 
         FILE *file_1 = fopen("Scores\\scores_P.txt", "a");
-        setScore(file_1, Total, Name, time_taken);
-        topScore(file_1);
+        setScore(file_1, Total_Score, Name, time_taken);
         fclose(file_1);
 
         break;
@@ -129,7 +128,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&e1.e_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -142,11 +141,10 @@ void setQuestions(int n)
             system("cls");
         }
 
-        printf("The Total Score is %d out of 100.\n", Total);
+        printf("The Total Score is %d out of 100.\n", Total_Score);
 
         FILE *file_2 = fopen("Scores\\scores_E.txt", "a");
-        setScore(file_2, Total, Name, time_taken);
-        topScore(file_2);
+        setScore(file_2, Total_Score, Name, time_taken);
         fclose(file_2);
 
         break;
@@ -182,7 +180,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&c1.c_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -195,11 +193,10 @@ void setQuestions(int n)
             system("cls");
         }
 
-        printf("The Total Score is %d out of 100.\n", Total);
+        printf("The Total Score is %d out of 100.\n", Total_Score);
 
         FILE *file_3 = fopen("Scores\\scores_C.txt", "a");
-        setScore(file_3, Total, Name, time_taken);
-        topScore(file_3);
+        setScore(file_3, Total_Score, Name, time_taken);
         fclose(file_3);
 
         break;
@@ -236,7 +233,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&d1.d_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -249,11 +246,10 @@ void setQuestions(int n)
             system("cls");
         }
 
-        printf("The Total Score is %d out of 100.\n", Total);
+        printf("The Total Score is %d out of 100.\n", Total_Score);
 
         FILE *file_4 = fopen("Scores\\scores_D.txt", "a");
-        setScore(file_4, Total, Name, time_taken);
-        topScore(file_4);
+        setScore(file_4, Total_Score, Name, time_taken);
         fclose(file_4);
 
         break;
@@ -290,7 +286,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&s1.s_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -303,11 +299,10 @@ void setQuestions(int n)
             system("cls");
         }
 
-        printf("The Total Score is %d out of 100.\n", Total);
+        printf("The Total Score is %d out of 100.\n", Total_Score);
 
         FILE *file_5 = fopen("Scores\\scores_S.txt", "a");
-        setScore(file_5, Total, Name, time_taken);
-        topScore(file_5);
+        setScore(file_5, Total_Score, Name, time_taken);
         fclose(file_5);
 
         break;
@@ -343,7 +338,7 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
-            printf("%d. ",i+1);
+            printf("%d. ", i + 1);
             askQuestion(&g1.g_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -356,11 +351,10 @@ void setQuestions(int n)
             system("cls");
         }
 
-        printf("The Total Score is %d out of 100.\n", Total);
+        printf("The Total Score is %d out of 100.\n", Total_Score);
 
         FILE *file_6 = fopen("Scores\\scores_G.txt", "a");
-        setScore(file_6, Total, Name, time_taken);
-        topScore(file_6);
+        setScore(file_6, Total_Score, Name, time_taken);
         fclose(file_6);
 
     default:
@@ -370,7 +364,7 @@ void setQuestions(int n)
 
 void askQuestion(Question *q)
 {
-    printf("\n%s\n", q->Question_Text);
+    printf("%s\n", q->Question_Text);
     printf("%s\n", q->Option_1);
     printf("%s\n", q->Option_2);
     printf("%s\n", q->Option_3);
@@ -380,33 +374,28 @@ void askQuestion(Question *q)
     printf("Enter the answer (in number): \n");
     while (1)
     {
-        if (scanf("%d", &Guess) != 1 || Guess > 5 || Guess < 1)
+        scanf("%d", &Answer);
+        if (Answer > 5 || Answer < 1)
         {
-            printf("Error: Invalid input. Please enter your answer.\n");
-            while (getchar() != '\n')
-            {
-            }
+            printf("Error: Invalid input.\nEnter the answer (in number): \n");
             continue;
         }
         break;
     }
 
     int choice;
-    while (Guess == 5)
+    while (Answer == 5)
     {
-        if (Life1 == 2 && Life2 == 2)
+        if (Life1 == 1 && Life2 == 1)
         {
             printf("NO MORE LIFELINES REMAINING!\n");
             printf("Enter the answer (in number): \n");
             while (1)
             {
-                if (scanf("%d", &Guess) != 1 || Guess == 5)
+                scanf("%d", &Answer);
+                if (Answer > 5 || Answer < 1)
                 {
-                    printf("NO MORE LIFELINES REMAINING!\n");
-                    printf("Enter the answer (number): \n");
-                    while (getchar() != '\n')
-                    {
-                    }
+                    printf("Error: Invalid input.\nEnter the answer (in number): \n");
                     continue;
                 }
                 break;
@@ -419,20 +408,18 @@ void askQuestion(Question *q)
         printf("Enter your choice(in number): ");
         scanf("%d", &choice);
 
-    basic:
-
-        if (choice == 1 && Life1 < 2)
+        if (choice == 1 && Life1 == 0)
         {
-            printf("EXPERT ADVICE IS NOW ACTIVATED AND THIS IS YOUR HINT.\n");
+            printf("YOU HAVE CHOSEN EXPERT ADVICE..\nHINT : ");
             printf("%s", q->Hint);
             printf("\n");
-            Life1 = Life1 + 1;
+            Life1++;
         }
         else if (choice == 1)
             printf("EXPERT ADVICE IS EXHAUSTED! ");
-        else if (choice == 2 && Life2 < 2)
+        else if (choice == 2 && Life2 == 0)
         {
-            printf("\n50-50 IS ACTIVATED AND THE TWO OPTIONS REMAINING ARE-\n");
+            printf("\nYOU HAVE CHOSEN 50-50...\nTHE TWO OPTIONS REMAINING ARE-\n");
             if (q->show1 == 1 || q->show2 == 1)
                 printf("%s\n", q->Option_1);
             if (q->show1 == 2 || q->show2 == 2)
@@ -441,29 +428,27 @@ void askQuestion(Question *q)
                 printf("%s\n", q->Option_3);
             if (q->show1 == 4 || q->show2 == 4)
                 printf("%s\n", q->Option_4);
-            Life2 = Life2 + 1;
+            Life2++;
         }
         else if (choice == 2)
             printf("50-50 IS EXHAUSTED!\n");
         printf("What is your answer?(in number)\n");
         while (1)
         {
-            if (scanf("%d", &Guess) != 1 || Guess > 5 || Guess < 1)
+            scanf("%d", &Answer);
+            if (Answer > 5 || Answer < 1)
             {
-                printf("Error: Invalid input.\nPlease enter your answer.\n");
-                while (getchar() != '\n')
-                {
-                }
+                printf("Error: Invalid input.\nEnter the answer (in number): \n");
                 continue;
             }
             break;
         }
     }
 
-    if (Guess == q->Correct_Answer)
+    if (Answer == q->Correct_Answer)
     {
         printf("\nCorrect !\n");
-        Total = Total + q->Question_Score;
+        Total_Score = Total_Score + q->Question_Score;
         printf("Score = %d out of %d\n", q->Question_Score, q->Question_Score);
     }
     else
@@ -507,56 +492,4 @@ void setScore(FILE *file, int score, char *name, float time)
         fprintf(file, "%s\t%d\t%f\n", name, score, time);
         printf("Score saved successfully!\n");
     }
-}
-
-void Time()
-{
-    clock_t start = clock();
-    clock_t end = clock();
-    elapsed = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("Time taken: %.6f seconds\n", elapsed);
-}
-
-void topScore(FILE *file)
-{
-    if (file == NULL)
-    {
-        printf("Error opening the file.\n");
-        return;
-    }
-
-    Player topPlayer;
-    topPlayer.score = -1;
-    topPlayer.time = 0;
-
-    Player currentPlayer;
-
-    while (fscanf(file, "%s\t%d\t%f", currentPlayer.name, &currentPlayer.score, &currentPlayer.time) != EOF)
-    {
-        if (currentPlayer.score > topPlayer.score && currentPlayer.time < topPlayer.time) 
-        {
-            topPlayer = currentPlayer;
-        }
-    }
-
-    fclose(file);
-
-    printf("Top Score: %d\nTime Taken : %f\n", topPlayer.score,topPlayer.time);
-    printf("Top Player(s):\n");
-
-    file = fopen("scores.txt", "r");
-    if (file == NULL)
-    {
-        printf("Error opening the file.\n");
-        return;
-    }
-
-    while (fscanf(file, "%s\t%d\t%f", currentPlayer.name, &currentPlayer.score, &currentPlayer.time) != EOF)
-    {
-        if (currentPlayer.score == topPlayer.score && currentPlayer.time == topPlayer.time)
-        {
-            printf("%s\n", currentPlayer.name);
-        }
-    }
-
 }

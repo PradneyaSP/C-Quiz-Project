@@ -1,8 +1,8 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-extern int Guess;
-extern int Total;
+extern int Answer;
+extern int Total_Score;
 extern int Life1;
 extern int Life2;
 extern int questions[10];
