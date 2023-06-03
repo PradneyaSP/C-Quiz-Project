@@ -13,6 +13,7 @@ Computer_Systems c1;
 System_Programming s1;
 General g1;
 Question q;
+Student currStudent;
 
 int Answer;
 int Total_Score;
@@ -24,6 +25,8 @@ double time_taken;
 time_t start_time, end_time;
 
 int questions[10];
+Student students[100]; // Adjust the array size as per your needs
+int numPlayers = 0;
 
 void setValues(Question *q, char qt[], char a1[], char a2[], char a3[], char a4[], int ca, int pa, int s1, int s2, char h[])
 {
@@ -75,7 +78,9 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
+            printf("\033[35m");
             printf("%d. ", i + 1);
+            printf("\033[0m");
             askQuestion(&p1.p_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -90,10 +95,26 @@ void setQuestions(int n)
 
         printf("The Total Score is %d out of 100.\n", Total_Score);
 
-        FILE *file_1 = fopen("Scores\\scores_P.txt", "a");
+        FILE *file_1 = fopen("Scores\\1_scores_CP.txt", "a");
+        FILE *file_1_b = fopen("Scores\\1_scores_CP.dat", "rb");
         setScore(file_1, Total_Score, Name, time_taken);
         fclose(file_1);
 
+        if (file_1_b == NULL)
+        {
+            printf("File not available !!");
+            return;
+        }
+
+        while (fread(&currStudent, sizeof(Student), 1, file_1_b) == 1)
+            students[numPlayers++] = currStudent;
+
+        fclose(file_1_b);
+
+        qsort(students, numPlayers, sizeof(Student), compareStudents);
+
+        FILE *file_1_w = fopen("Scores\\1_scores_CP.dat", "wb");
+        leaderboard(file_1_w, students, &numPlayers, Total_Score, Name, time_taken);
         break;
     case 2:
         setValues(&e1.e_q[0], "Which type of line is used to represent hidden or invisible edges in an orthographic projection?", "1) Dashed line", "2) Solid line", "3) Dot-dashed line", "4) Dotted line", 1, 10, 1, 3, "Hidden lines are typically represented by dashed lines to differentiate them from visible lines.");
@@ -128,7 +149,9 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
+            printf("\033[35m");
             printf("%d. ", i + 1);
+            printf("\033[0m");
             askQuestion(&e1.e_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -143,10 +166,25 @@ void setQuestions(int n)
 
         printf("The Total Score is %d out of 100.\n", Total_Score);
 
-        FILE *file_2 = fopen("Scores\\scores_E.txt", "a");
+        FILE *file_2 = fopen("Scores\\2_scores_EV.txt", "a");
+        FILE *file_2_b = fopen("Scores\\2_scores_EV.dat", "rb");
         setScore(file_2, Total_Score, Name, time_taken);
         fclose(file_2);
 
+        if (file_2_b == NULL)
+        {
+            printf("File not available !!");
+            return;
+        }
+
+        while (fread(&currStudent, sizeof(Student), 1, file_2_b) == 1)
+            students[numPlayers++] = currStudent;
+        fclose(file_2_b);
+
+        qsort(students, numPlayers, sizeof(Student), compareStudents);
+
+        FILE *file_2_w = fopen("Scores\\2_scores_EV.dat", "wb");
+        leaderboard(file_2_w, students, &numPlayers, Total_Score, Name, time_taken);
         break;
     case 3:
         setValues(&c1.c_q[0], "Which component of a computer is responsible for executing instructions?", "1) Central Processing Unit (CPU)", "2) Random Access Memory (RAM)", "3) Hard Disk Drive (HD4)", "4) Graphics Processing Unit (GPU)", 1, 10, 1, 3, "It is often referred to as the \"brain\" of the computer.");
@@ -180,7 +218,9 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
+            printf("\033[35m");
             printf("%d. ", i + 1);
+            printf("\033[0m");
             askQuestion(&c1.c_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -195,10 +235,26 @@ void setQuestions(int n)
 
         printf("The Total Score is %d out of 100.\n", Total_Score);
 
-        FILE *file_3 = fopen("Scores\\scores_C.txt", "a");
+        FILE *file_3 = fopen("Scores\\3_scores_CS.txt", "a");
+        FILE *file_3_b = fopen("Scores\\3_scores_CS.dat", "rb");
         setScore(file_3, Total_Score, Name, time_taken);
         fclose(file_3);
 
+        if (file_3_b == NULL)
+        {
+            printf("File not available !!");
+            return;
+        }
+
+        while (fread(&currStudent, sizeof(Student), 1, file_3_b) == 1)
+            students[numPlayers++] = currStudent;
+
+        fclose(file_3_b);
+
+        qsort(students, numPlayers, sizeof(Student), compareStudents);
+
+        FILE *file_3_w = fopen("Scores\\3_scores_CS.dat", "wb");
+        leaderboard(file_3_w, students, &numPlayers, Total_Score, Name, time_taken);
         break;
     case 4:
         setValues(&d1.d_q[0], "Which data structure is based on the \"First-In-First-Out\" (FIFO) principle?", "1) Stack", "2) Queue", "3) Heap", "4) Linked List", 2, 10, 2, 4, "Think about the order in which elements are accessed or removed from the structure.");
@@ -233,7 +289,9 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
+            printf("\033[35m");
             printf("%d. ", i + 1);
+            printf("\033[0m");
             askQuestion(&d1.d_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -248,10 +306,26 @@ void setQuestions(int n)
 
         printf("The Total Score is %d out of 100.\n", Total_Score);
 
-        FILE *file_4 = fopen("Scores\\scores_D.txt", "a");
+        FILE *file_4 = fopen("Scores\\4_scores_DS.txt", "a");
+        FILE *file_4_b = fopen("Scores\\4_scores_DS.dat", "rb");
         setScore(file_4, Total_Score, Name, time_taken);
         fclose(file_4);
 
+        if (file_4_b == NULL)
+        {
+            printf("File not available !!");
+            return;
+        }
+
+        while (fread(&currStudent, sizeof(Student), 1, file_4_b) == 1)
+            students[numPlayers++] = currStudent;
+
+        fclose(file_4_b);
+
+        qsort(students, numPlayers, sizeof(Student), compareStudents);
+
+        FILE *file_4_w = fopen("Scores\\4_scores_DS.dat", "wb");
+        leaderboard(file_4_w, students, &numPlayers, Total_Score, Name, time_taken);
         break;
     case 5:
         setValues(&s1.s_q[0], "What is the primary purpose of a compiler?", "1) Execute programs", "2) Interpret source code", "3) Translate source code to machine code", "4) Debug programs", 3, 10, 3, 4, "A compiler converts high-level programming languages into low-level machine code.");
@@ -286,7 +360,9 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
+            printf("\033[35m");
             printf("%d. ", i + 1);
+            printf("\033[0m");
             askQuestion(&s1.s_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -301,10 +377,26 @@ void setQuestions(int n)
 
         printf("The Total Score is %d out of 100.\n", Total_Score);
 
-        FILE *file_5 = fopen("Scores\\scores_S.txt", "a");
+        FILE *file_5 = fopen("Scores\\5_scores_SP.txt", "a");
+        FILE *file_5_b = fopen("Scores\\5_scores_SP.dat", "rb");
         setScore(file_5, Total_Score, Name, time_taken);
         fclose(file_5);
 
+        if (file_5_b == NULL)
+        {
+            printf("File not available !!");
+            return;
+        }
+
+        while (fread(&currStudent, sizeof(Student), 1, file_5_b) == 1)
+            students[numPlayers++] = currStudent;
+
+        fclose(file_5_b);
+
+        qsort(students, numPlayers, sizeof(Student), compareStudents);
+
+        FILE *file_5_w = fopen("Scores\\5_scores_SP.dat", "wb");
+        leaderboard(file_5_w, students, &numPlayers, Total_Score, Name, time_taken);
         break;
     case 6:
         setValues(&g1.g_q[0], " What is always in front of you but can't be seen?", "1) Future", "2) Mirror", "3) Air", "4) Memory", 1, 10, 1, 3, "It refers to the concept of time.");
@@ -312,14 +404,14 @@ void setQuestions(int n)
         setValues(&g1.g_q[2], "The more you take, the more you leave behind. What am I?", "1) Footsteps", "2) Breath", "3) Time", "4) Knowledge", 3, 10, 3, 1, " It refers to a non-physical concept.");
         setValues(&g1.g_q[3], "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?", "1) Whisper", "2) Echo", "3) Dream", "4) Thought", 2, 10, 2, 1, "You often hear it in nature.");
         setValues(&g1.g_q[4], "What has a heart that doesn't beat?", "1) Clock", "2) Human", "3) Computer", "4) Tomato", 1, 10, 1, 2, "It is a common household item.");
-        setValues(&g1.g_q[5], "I can be cracked, made, told, and played. What am I?", "1) Joke", "2) Egg", "3) Music", "4) Riddle", 4, 10, 4, 3, " It involves creativity.");
-        setValues(&g1.g_q[6], "What gets wetter the more it dries?", "1) Towel", "2) Soap", "3) Hair", "4) Sponge", 1, 10, 1, 3, "It is used for drying.");
+        setValues(&g1.g_q[5], "I can be cracked, made, told, and played. What am I?", "1) Joke", "2) Egg", "3) Music", "4) Riddle", 1, 10, 1, 3, " It involves creativity.");
+        setValues(&g1.g_q[6], "What gets wetter the more it dries?", "1) Towel", "2) Soap", "3) Hair", "4) Table", 1, 10, 1, 3, "It is used for drying.");
         setValues(&g1.g_q[7], "I am always hungry, I must always be fed. The finger I touch will soon turn red. What am I?", "1) Fire", "2) Baby", "3) Shark", "4) Spider", 1, 10, 1, 3, "It requires fuel to continue.");
         setValues(&g1.g_q[8], "The more you have of it, the less you see. What is it?", "1) Darkness", "2) Wisdom", "3) Sleep", "4) Mist", 1, 10, 1, 4, "It refers to a lack of something.");
         setValues(&g1.g_q[9], "I can fly without wings. I can cry without eyes. Wherever I go, darkness follows me. What am I?", "1) Wind", "2) Ghost", "3) Cloud", "4) Moon", 3, 10, 3, 4, " It is related to weather.");
         setValues(&g1.g_q[10], "I have cities but no houses, forests but no trees, and rivers but no water. What am I?", "1) Map", "2) Globe", "3) Book", "4) Dream", 1, 10, 1, 2, "It provides information.");
         setValues(&g1.g_q[11], " What goes up but never comes down?", "1) Age", "2) Happiness", "3) Energy", "4) Balloon", 1, 10, 1, 3, "It refers to a natural process.");
-        setValues(&g1.g_q[12], " I am an odd number. Take away one letter and I become even. What number am I?", "1) One", "2) Three", "3) Five", "4) Seven", 2, 10, 2, 3, "Pay attention to the wording.");
+        setValues(&g1.g_q[12], " I am an odd number. Take away one letter and I become even. What number am I?", "1) One", "2) Three", "3) Five", "4) Seven", 4, 10, 4, 3, "Pay attention to the wording.");
         setValues(&g1.g_q[13], "The more you take, the more you leave behind. What am I", "1) Steps", "2) Footprints", "3) Time", "4) Money", 3, 10, 3, 2, "It refers to a non-physical concept.");
         setValues(&g1.g_q[14], "What can you catch but not throw?", "1) Cold", "2) Ball", "3) Fish", "4) Air", 1, 10, 1, 4, "It is an illness.");
         setValues(&g1.g_q[15], "The person who makes it, sells it. The person who buys it, never uses it. The person who uses it, never knows they're using it. What is it?", "1) Coffin", "2) Pen", "3) Bed", "4) Car", 1, 10, 1, 3, "It is related to a somber event.");
@@ -338,7 +430,9 @@ void setQuestions(int n)
         for (int i = 0; i < 10; i++)
         {
             start_time = time(NULL);
+            printf("\033[35m");
             printf("%d. ", i + 1);
+            printf("\033[0m");
             askQuestion(&g1.g_q[questions[i]]);
             end_time = time(NULL);
             elapsed = difftime(end_time, start_time);
@@ -352,10 +446,27 @@ void setQuestions(int n)
         }
 
         printf("The Total Score is %d out of 100.\n", Total_Score);
-
-        FILE *file_6 = fopen("Scores\\scores_G.txt", "a");
+        FILE *file_6 = fopen("Scores\\6_scores_R.txt", "a");
+        FILE *file_6_b = fopen("Scores\\6_scores_R.dat", "rb");
         setScore(file_6, Total_Score, Name, time_taken);
         fclose(file_6);
+
+        if (file_6_b == NULL)
+        {
+            printf("File not available !!");
+            return;
+        }
+
+        while (fread(&currStudent, sizeof(Student), 1, file_6_b) == 1)
+            students[numPlayers++] = currStudent;
+
+        fclose(file_6_b);
+
+        qsort(students, numPlayers, sizeof(Student), compareStudents);
+
+        FILE *file_6_w = fopen("Scores\\6_scores_R.dat", "wb");
+        leaderboard(file_6_w, students, &numPlayers, Total_Score, Name, time_taken);
+        break;
 
     default:
         break;
@@ -364,7 +475,9 @@ void setQuestions(int n)
 
 void askQuestion(Question *q)
 {
+    printf("\033[35m");
     printf("%s\n", q->Question_Text);
+    printf("\033[0m");
     printf("%s\n", q->Option_1);
     printf("%s\n", q->Option_2);
     printf("%s\n", q->Option_3);
@@ -402,6 +515,7 @@ void askQuestion(Question *q)
             }
             break;
         }
+        q->Question_Score /= 2;
         printf("\nWhich LIFELINE do you want to use?\n");
         printf("1. Expert Advice\n");
         printf("2. 50-50\n\n");
@@ -447,13 +561,17 @@ void askQuestion(Question *q)
 
     if (Answer == q->Correct_Answer)
     {
-        printf("\nCorrect !\n");
+        printf("\033[0;32m");
+        printf("\nCorrect Answer!!\n");
+        printf("\033[0m");
         Total_Score = Total_Score + q->Question_Score;
         printf("Score = %d out of %d\n", q->Question_Score, q->Question_Score);
     }
     else
     {
+        printf("\033[0;31m");
         printf("\nWrong Answer !\n");
+        printf("\033[0m");
         printf("The Correct Answer was:%d\n", q->Correct_Answer);
         printf("Score = 0 out of %d\n", q->Question_Score);
     }
@@ -492,4 +610,60 @@ void setScore(FILE *file, int score, char *name, float time)
         fprintf(file, "%s\t%d\t%f\n", name, score, time);
         printf("Score saved successfully!\n");
     }
+}
+
+int compareStudents(const void *a, const void *b)
+{
+    const Student *s1 = (const Student *)a;
+    const Student *s2 = (const Student *)b;
+    if (s1->score < s2->score)
+        return 1;
+    else if (s1->score > s2->score)
+        return -1;
+    else if (s1->time < s2->time)
+        return 1;
+    else if (s1->time > s2->time)
+        return -1;
+    else
+        return strcmp(s1->name, s2->name);
+}
+
+void leaderboard(FILE *file, Student students[], int *numOfPlayers, int score, char *name, float time)
+{
+    Student new;
+    strcpy(new.name, name);
+    new.score = score;
+    new.time = time;
+
+    int index = *numOfPlayers;
+    for (int i = 0; i < *numOfPlayers; i++)
+    {
+        if (compareStudents(&new, &students[i]) < 0)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    for (int i = *numOfPlayers; i > index; i--)
+        students[i] = students[i - 1];
+
+    students[index] = new;
+    (*numOfPlayers)++;
+
+    fwrite(students, sizeof(Student), *numOfPlayers, file);
+    fclose(file);
+
+    printf("\n\t\t\tLeaderboard\n\n");
+    printf("\t\tName\t\tScore\t\tTime\n");
+    for (int i = 0; i < *numOfPlayers; i++)
+    {
+        printf("\t\t%s\t\t", students[i].name);
+        printf("%d\t\t", students[i].score);
+        printf("%.3f", students[i].time);
+        printf("\n");
+    }
+
+    printf("Press Enter to continue :");
+    getchar();
 }
