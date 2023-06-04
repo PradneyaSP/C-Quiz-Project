@@ -60,13 +60,17 @@ int main()
     printf("\033[34m");
     printf("\n                                \033[4mENTER YOUR DETAILS: \n");
     printf("\033[0m");
-    printf("Name : ");
+    printf("\033[38;2;255;165;0mName : \033[0m");
     scanf("%[^\n]s", Name);
-    printf("\nAre you ready to take the quiz %s? Yes/No \n", Name);
+    printf("\n\033[38;2;255;165;0mNAMASKAR \033[0m");
+    printf("\033[38;2;255;165;0m%s\033[0m\n", Name);
+
+    printf("\n\033[38;2;255;165;0mAre you ready to take the quiz %s? Yes/No\033[0m\n", Name);
+
     char Respond[3];
     scanf("%s", Respond);
     system("cls");
-    int choice1, choice2;
+    int choice1, choice2, choice3;
 
     do
     {
@@ -79,21 +83,40 @@ int main()
         if (strcmp(Respond, "Yes") == 0 || strcmp(Respond, "yes") == 0 || strcmp(Respond, "y") == 0 || strcmp(Respond, "Y") == 0)
         {
             printf("\n");
-            printf("\033[34m");
+            printf("\033[38;5;33m");
             printf("                                        \033[4mEnter the Subject of the Quiz: \n\n");
             printf("\033[0m");
-            printf("1. Problem Solving and Computer Programming\n");
-            printf("2. Engineering Visualisation\n");
-            printf("3. Introduction to Computer Systems\n");
-            printf("4. Data Structures and Algorithms\n");
-            printf("5. System Programming\n");
-            printf("6. Riddles\n\n");
-            printf("What is your CHOICE?(in number): ");
+            printf("\033[38;5;39m1. Problem Solving and Computer Programming\n");
+            printf("\033[38;5;39m2. Engineering Visualisation\n");
+            printf("\033[38;5;39m3. Introduction to Computer Systems\n");
+            printf("\033[38;5;39m4. Data Structures and Algorithms\n");
+            printf("\033[38;5;39m5. System Programming\n");
+            printf("\033[38;5;39m6. Riddles\n\n");
+            printf("\033[38;5;39mWhat is your CHOICE? (in number): ");
 
             while (1)
             {
                 scanf("%d", &choice1);
                 if (choice1 > 6 || choice1 < 1)
+                {
+                    printf("Invalid Input !!\nWhat is your CHOICE?(in number): ");
+                    continue;
+                }
+                break;
+            }
+
+            printf("\n");
+            printf("\033[38;5;33m");
+            printf("                                        \033[4mEnter the Difficulty of the Quiz: \n\n");
+            printf("\033[0m");
+            printf("\033[38;5;39m1. Easy\n");
+            printf("\033[38;5;39m2. Hard\n");
+            printf("\033[38;5;39mWhat is your CHOICE? (in number): ");
+
+            while (1)
+            {
+                scanf("%d", &choice2);
+                if (choice2 > 2 || choice1 < 1)
                 {
                     printf("Invalid Input !!\nWhat is your CHOICE?(in number): ");
                     continue;
@@ -108,36 +131,21 @@ int main()
         }
         system("cls");
         // void settValues(struct Question *q, char qt[], char a1[], char a2[], char a3[], char a4[], int ca, int pa, int s1, int s2, char h[]);
-        switch (choice1)
-        {
-        case 1:
-            setQuestions(1);
-            break;
-        case 2:
 
-            setQuestions(2);
-            break;
-        case 3:
-            setQuestions(3);
-            break;
-        case 4:
-            setQuestions(4);
-            break;
-        case 5:
-            setQuestions(5);
-            break;
-        case 6:
-            setQuestions(6);
-            break;
-        default:
-            break;
-        }
+        setQuestions(choice1, choice2);
+
         printf("\033[34m");
-        printf("\n\nWOULD YOU LIKE TO TAKE THE QUIZ AGAIN ? \nENTER 1 TO CONTINUE 0 TO EXIT : ");
+        printf("\n\nWOULD YOU LIKE TO TAKE THE QUIZ AGAIN ? \nENTER 1 TO ATTEMPT THE QUIZ AGAIN. 0 TO EXIT : ");
         printf("\033[0m");
-        scanf("%d", &choice2);
+        scanf("%d", &choice3);
         system("cls");
-    } while (choice2);
+    } while (choice3);
+
+    system("cls");
+    printf("\033[0;33m");
+    printf("\n\n\t\t\t   \033[4mThank You\033[0m..");
+    Sleep(2000);
+    system("cls");
 
     return 0;
 }

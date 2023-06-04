@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 void setValues(Question *q, char qt[], char a1[], char a2[], char a3[], char a4[], int ca, int pa, int s1, int s2, char h[]);
-void setQuestions(int n);
+void setQuestions(int n , int diff);
 void askQuestion(Question *q);
 void setScore(FILE *file, int score, char *name, float time);
 void random_Qnumber();
