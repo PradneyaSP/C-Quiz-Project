@@ -1,5 +1,6 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
+#define NO_OF_QUESTIONS 26
 
 extern int Answer;
 extern int Total_Score;
@@ -26,32 +27,32 @@ typedef struct
 
 typedef struct
 {
-    Question p_q[100];
+    Question p_q[NO_OF_QUESTIONS];
 } C_Programming;
 
 typedef struct
 {
-    Question e_q[100];
+    Question e_q[NO_OF_QUESTIONS];
 } Engineering_Visualisation;
 
 typedef struct
 {
-    Question d_q[100];
+    Question d_q[NO_OF_QUESTIONS];
 } Data_Structure;
 
 typedef struct
 {
-    Question c_q[100];
+    Question c_q[NO_OF_QUESTIONS];
 } Computer_Systems;
 
 typedef struct
 {
-    Question s_q[100];
+    Question s_q[NO_OF_QUESTIONS];
 } System_Programming;
 
 typedef struct
 {
-    Question g_q[100];
+    Question g_q[NO_OF_QUESTIONS];
 } General;
 
 typedef struct
