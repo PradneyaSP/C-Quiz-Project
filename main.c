@@ -15,39 +15,40 @@ int main()
     int total;
     system("cls");
     printf("\033[0;33m");
-    printf("  |||||||||||| ||     ||  || ||          ||   ||       ||  ||||||||||  |||        |||       |||        ||||||||||   ||||||||||||\n");
+    printf("\n\n\n");
+    printf("\t\t  |||||||||||| ||     ||  || ||          ||   ||       ||  ||||||||||  |||        |||       |||        ||||||||||   ||||||||||||\n");
     Sleep(200);
-    printf("       ||      ||     ||  || || ||       ||   ||    |||     ||     |   ||||     |||||     ||   ||      ||      ||        ||     \n");
+    printf("\t\t       ||      ||     ||  || || ||       ||   ||    |||     ||     |   ||||     |||||     ||   ||      ||      ||        ||     \n");
     Sleep(200);
-    printf("       ||      ||     ||  || ||   ||     ||   ||   ||          ||      ||  ||  ||  ||     ||    ||     ||      ||        ||     \n");
+    printf("\t\t       ||      ||     ||  || ||   ||     ||   ||   ||          ||      ||  ||  ||  ||     ||    ||     ||      ||        ||     \n");
     Sleep(200);
-    printf("       ||      |||||||||  || ||     ||   ||   || ||             ||     ||    ||    ||    ||||||||||    ||||||||||        ||     \n");
+    printf("\t\t       ||      |||||||||  || ||     ||   ||   || ||             ||     ||    ||    ||    ||||||||||    ||||||||||        ||     \n");
     Sleep(200);
-    printf("       ||      ||     ||  || ||      ||  ||   ||   ||            ||    ||          ||   ||        ||   |||||             ||     \n");
+    printf("\t\t       ||      ||     ||  || ||      ||  ||   ||   ||            ||    ||          ||   ||        ||   |||||             ||     \n");
     Sleep(200);
-    printf("       ||      ||     ||  || ||        ||||   ||     ||     ||    ||   ||          ||  ||          ||  ||    ||          ||     \n");
+    printf("\t\t       ||      ||     ||  || ||        ||||   ||     ||     ||    ||   ||          ||  ||          ||  ||    ||          ||     \n");
     Sleep(200);
-    printf("       ||      ||     ||  || ||          ||   ||       ||   |||||||    ||          || ||            || ||     |||        ||     \n");
+    printf("\t\t       ||      ||     ||  || ||          ||   ||       ||   |||||||    ||          || ||            || ||     |||        ||     \n");
     Sleep(1000);
     printf("\033[0m");
     printf("\033[34m");
-    printf("\n\n                           \033[4mRULES OF THE QUIZ-\n\n");
+    printf("\n\n\t\t\t                           \033[4mRULES OF THE QUIZ-\n\n");
     printf("\033[0m"); // Reset color and style
     printf("\033[31m");
     Sleep(200);
-    printf("1. There are questions on 6 subjects\n");
+    printf("\t\t\t1. There are questions on 6 subjects and 2 difficulties\n");
     Sleep(200);
-    printf("2. There are 10 MCQs with a single correct option.\n");
+    printf("\t\t\t2. There are 10 MCQs with a single correct option.\n");
     Sleep(200);
-    printf("3. Each Question will be of 10 points.\n");
+    printf("\t\t\t3. Each Question will be of 10 points.\n");
     Sleep(200);
-    printf("4. To help you when you are stuck, we have TWO LIFELINES.\n");
+    printf("\t\t\t4. To help you when you are stuck, we have TWO LIFELINES.\n");
     Sleep(200);
-    printf("   -> EXPERT ADVICE: A Hint will be a given related to correct answer.\n");
+    printf("\t\t\t   -> EXPERT ADVICE: A Hint will be a given related to correct answer.\n");
     Sleep(200);
-    printf("   -> 50-50: Two incorrect options will be removed.\n");
+    printf("\t\t\t   -> 50-50: Two incorrect options will be removed.\n");
     Sleep(200);
-    printf("5. You can use each LIFELINE only once and The score will be reduced to 5 points.\n\n");
+    printf("\t\t\t5. You can use each LIFELINE only once and The score will be reduced to 5 points.\n\n");
     Sleep(1000);
     printf("\033[0m");
     printf("\033[0;32m");
@@ -83,7 +84,7 @@ int main()
         if (strcmp(Respond, "Yes") == 0 || strcmp(Respond, "yes") == 0 || strcmp(Respond, "y") == 0 || strcmp(Respond, "Y") == 0)
         {
             printf("\n");
-            printf("\033[38;5;33m");
+            printf("\033[34m");
             printf("                                        \033[4mEnter the Subject of the Quiz: \n\n");
             printf("\033[0m");
             printf("\033[38;5;39m1. Problem Solving and Computer Programming\n");
@@ -91,7 +92,7 @@ int main()
             printf("\033[38;5;39m3. Introduction to Computer Systems\n");
             printf("\033[38;5;39m4. Data Structures and Algorithms\n");
             printf("\033[38;5;39m5. System Programming\n");
-            printf("\033[38;5;39m6. Riddles\n\n");
+            printf("\033[38;5;39m6. Puzzles and Riddles\n\n");
             printf("\033[38;5;39mWhat is your CHOICE? (in number): ");
 
             while (1)
@@ -106,7 +107,7 @@ int main()
             }
 
             printf("\n");
-            printf("\033[38;5;33m");
+            printf("\033[34m");
             printf("                                        \033[4mEnter the Difficulty of the Quiz: \n\n");
             printf("\033[0m");
             printf("\033[38;5;39m1. Easy\n");
@@ -130,7 +131,6 @@ int main()
             return 0;
         }
         system("cls");
-        // void settValues(struct Question *q, char qt[], char a1[], char a2[], char a3[], char a4[], int ca, int pa, int s1, int s2, char h[]);
 
         setQuestions(choice1, choice2);
 
